@@ -449,12 +449,31 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
+
   function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+
+    var newWidth = 33.33;
+
+    switch(size) {
+      case "1":
+        newWidth = 25;
+	break;
+      case "2":
+        newWidth = 33.33;
+	break;
+      case "3":
+        newWidth = 50;
+	break;
+      default:
+        console.log("bug in changePizzaSizes");
     }
+
+    var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
+
+    for (var i = 0; i < randomPizzas.length; i++) {
+      randomPizzas[i].style.width = newWidth + "%";
+    }
+
   }
 
   changePizzaSizes(size);
@@ -469,8 +488,8 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
-for (var i = 2; i < 100; i++) {
   var pizzasDiv = document.getElementById("randomPizzas");
+for (var i = 2; i < 100; i++) {
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -503,9 +522,13 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
+  var phases = new Array(200);
+  var scroll = document.body.scrollTop / 1250;
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    phases[i] = Math.sin((scroll) + (i % 5));
+  }
+  for (var i = 0; i < items.length; i++) {
+      items[i].style.left = items[i].basicLeft + 100 * phases[i] + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
