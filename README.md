@@ -1,3 +1,17 @@
+Okay this is an iterative submission.
+This README and page speed modifications still need attention.
+
+Went back to the lesson videos and quizes and some more ideas clicked.
+The lessons sort of suggest transforms as being important.
+Worked on merging my limited HTML5/CSS3 knowledge with the sine movement
+and pretty much simplified the whole thing.
+The transform call moved the placement of pizzas to the middle of the screen
+and I worked around that as best I could.
+I'd like to know if there is a way to confine the background pizzas to the moving red pizza background.
+Maybe a new division, different layer (zindex ?)
+And I went through and heeded may of the suggestions from the first review.
+
+
 Due to unforeseeable family issues I've slipped four months in completing this project.
 This submission is still not complete, but I need some feedback on how close I am.
 I see that I've got 92/100 on the desktop page speed evaluation.

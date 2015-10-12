@@ -30,16 +30,26 @@ form {
 }
 
 .mover {
+
   position: fixed;
+
   width: 256px;
+
   z-index: -1;
+
+/* put the moving pizzas in one layer */
   will-change: transform;
+
 }
 
 .randomPizzaContainer {
   float: left;
   display: flex;
   z-index: 1;
+/*
+  this didn't seem to help with the menu pizzas
+  will-change: transform;
+*/
 }
 
 .randomPizzaContainer:after {
