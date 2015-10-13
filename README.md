@@ -1,3 +1,23 @@
+
+Used Macintosh "GraphicConverter X" from lemkesoft.com to optimize these images:
+
+BEFORE (70 x 70):
+-rw-r--r--  1 sbrenton  staff     14K Mar 12  2015 img/profilepic.jpg
+
+AFTER:
+-rw-r--r--  1 sbrenton  staff    5.9K Oct 10 21:48 img/profilepic.jpg
+
+BEFORE:
+-rw-r--r--  1 sbrenton  staff     2.3M Mar 12  2015 views/images/pizzeria.jpg
+
+AFTER:
+-rw-r--r--  1 sbrenton  staff      23K Oct 12 14:12 views/images/pizzeria.jpg
+-rw-r--r--  1 sbrenton  staff     4.8K Oct 12 14:27 views/images/pizzathumb.jpg
+
+Adjusted bit depth (number of colors) and natural/display size as suggested in:
+https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization
+
+
 Okay this is an iterative submission.
 This README and page speed modifications still need attention.
 
