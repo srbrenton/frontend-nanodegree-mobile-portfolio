@@ -1,3 +1,4 @@
+I modifed README
 
 Used Macintosh "GraphicConverter X" from lemkesoft.com to optimize these images:
 
