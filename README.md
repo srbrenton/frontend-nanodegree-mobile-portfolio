@@ -1,75 +1,46 @@
-INSTRUCTIONS
-============
-This project is on GitHub, direct your browser to:
+frontend-nanodegree-mobile-portfolio
+====================================
+Instructions
+------------
+The source for this project is on GitHub, direct your browser to:
 
-	https://github.com/srbrenton/frontend-nanodegree-mobile-portfolio
+<https://github.com/srbrenton/frontend-nanodegree-mobile-portfolio/>
 
 To interact with this project, direct your browser to:
 
-	http://srbrenton.github.io/frontend-nanodegree-mobile-portfolio
+<http://srbrenton.github.io/frontend-nanodegree-mobile-portfolio/>
 
-Click on the link to "Cam's Pizzeria" to see moving pizzas when you scroll the Pizza Menu
+See [Cam's Pizzeria](http://srbrenton.github.io/frontend-nanodegree-mobile-portfolio/views/pizza.html)
+for wildly moving pizzas when you scroll the Pizza Menu page
 
-PAGESPEED MODIFICATIONS
-=======================
+Modifications to index.html for PageSpeed evaluation
+----------------------------------------------------
+* Used Macintosh "GraphicConverter X" from lemkesoft.com to optimize these images:
+    
+    BEFORE:<br>
+14K  img/profilepic.jpg
 
-Used Macintosh "GraphicConverter X" from lemkesoft.com to optimize these images:
+    AFTER:<br>
+5.9K img/profilepic.jpg
 
-BEFORE:
-	14K  img/profilepic.jpg
+    BEFORE:<br>
+2.3M views/images/pizzeria.jpg
 
-AFTER:
-	5.9K img/profilepic.jpg
+    AFTER:<br>
+23K  views/images/pizzeria.jpg<br>
+    4.8K views/images/pizzathumb.jpg
 
-BEFORE:
-	2.3M views/images/pizzeria.jpg
+* Adjusted bit depth (number of colors) and natural/display size as suggested in:
+<https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization>
+* Read contents of css/style.css into &lt;style&gt; block in index.html
+* Moved contents of index.html &lt;script&gt; block into js/fromindex.js
+* Added media="print" to css/print.css link
+* Added async attribute to &lt;script&gt; tags in index.html
 
-AFTER:
-	23K  views/images/pizzeria.jpg
-	4.8K views/images/pizzathumb.jpg
-
-Adjusted bit depth (number of colors) and natural/display size as suggested in:
-https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization
-
-Read contents of css/style.css into <style> block in index.html
-Moved contents of index.html <script> block into js/fromindex.js
-Added media="print" to css/print.css link
-Added async attribute to <script> tags in index.html
-
-PIZZA.HTML MODIFICATIONS
-========================
-
-Okay this is an iterative submission.
-This README and page speed modifications still need attention.
-
-Went back to the lesson videos and quizes and some more ideas clicked.
-The lessons sort of suggest transforms as being important.
-Worked on merging my limited HTML5/CSS3 knowledge with the sine movement
-and pretty much simplified the whole thing.
-The transform call moved the placement of pizzas to the middle of the screen
-and I worked around that as best I could.
-I'd like to know if there is a way to confine the background pizzas to the moving red pizza background.
-Maybe a new division, different layer (zindex ?)
-And I went through and heeded may of the suggestions from the first review.
-
-
-Due to unforeseeable family issues I've slipped four months in completing this project.
-This submission is still not complete, but I need some feedback on how close I am.
-I see that I've got 92/100 on the desktop page speed evaluation.
-Since May I've had a steep learning curve on devTools,
-especially since I was trying to follow the lessons with Canary Chrome.
-The changes in main.js and style.css are mine without consulting whatever hints
-may or may not be in the discussion forums.  Of course the 'gimme' for changing the pizza sizes came from the lesson videos.
-During the last four months I've attended a number of the webcasts.
-I've tried to install and use the 'gulp' stuff but that is a dead end for now due to node/npm/gulp conflicts.
-So there won't be any minifications. It appears that main.js runs near or at 60 FPS for the basic pipeline,
-but I don't understand the long frames or the greyed/empty extensions of the frame views in devTools
-which reflect the compositor work.  I don't understand if the `long' frames should be or can be fixed.
-Use the gh-pages branch on my github link to see my modifications.
-
-Use github IO to see and test/measure the pizzas.
-
-http://srbrenton.github.io/frontend-nanodegree-mobile-portfolio/views/pizza.html
-
-Thanks for any guidance you can give me.
-
+views/js/main.js modifications
+------------------------------
+* moved several calls for DOM elements outside the loops used to update their attribute values
+* refactored 'pizza size' slider to eliminate meaningless code per the video lesson
+* added a simple 'animate' function to limit scroll updates to once per frame
+* refactored background pizza sine movement using translate calls to update the pizzas in their own layer
+* added 'will-change: translate' css attribute and value to .mover class

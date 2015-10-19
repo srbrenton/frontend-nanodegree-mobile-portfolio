@@ -402,7 +402,7 @@ var pizzaElementGenerator = function(i) {
 var resizePizzas = function(size) { 
   window.performance.mark("mark_start_resize");   // User Timing API function
 
-//// Will still see about implementing suggestions for using Web API
+  // Will still see about implementing suggestions for using Web API
   // Changes the value for the size of the pizza above the slider
   function changeSliderLabel(size) {
     switch(size) {
@@ -422,35 +422,7 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-//// maybe by the final submission I'll remove this
-//// 
-////   // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
-////   function determineDx (elem, size) {
-////     var oldwidth = elem.offsetWidth;
-////     var windowwidth = document.querySelector("#randomPizzas").offsetWidth;
-////     var oldsize = oldwidth / windowwidth;
-//// 
-////     // TODO: change to 3 sizes? no more xl?
-////     // Changes the slider value to a percent width
-////     function sizeSwitcher (size) {
-////       switch(size) {
-////         case "1":
-////           return 0.25;
-////         case "2":
-////           return 0.3333;
-////         case "3":
-////           return 0.5;
-////         default:
-////           console.log("bug in sizeSwitcher");
-////       }
-////     }
-//// 
-//// 
-////     var newsize = sizeSwitcher(size);
-////     var dx = (newsize - oldsize) * windowwidth;
-//// 
-////     return dx;
-////   }
+  // this section was 'refactored' with suggestions from the video lessons
 
   // Iterates through pizza elements on the page and changes their widths
 
@@ -460,22 +432,21 @@ var resizePizzas = function(size) {
 
     switch(size) {
       case "1":
-        newWidth = 25;
+        newWidth = 25;		// percent of width for four pizzas
 	break;
       case "2":
-        newWidth = 33.33;
+        newWidth = 33.33;	// percent of width for three pizzas
 	break;
       case "3":
-        newWidth = 50;
+        newWidth = 50;		// percent of width for two pizzas
 	break;
       default:
         console.log("bug in changePizzaSizes");
     }
 
+    // adjust the width percentage for this set of pizzas
     var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
-
     var randomCount = randomPizzas.length;
-
     for (var i = 0; i < randomCount; i++) {
       randomPizzas[i].style.width = newWidth + "%";
     }
@@ -495,7 +466,7 @@ window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
 
-// Moved this line out of the for loop
+// Moved this line out of the for loop to limit lookups in the DOM
 var pizzasDiv = document.getElementById("randomPizzas");
 
 for (var i = 2; i < 100; i++) {
@@ -538,28 +509,13 @@ function updatePositions() {
   var items = document.querySelectorAll('.mover');
   var scroll = document.body.scrollTop / 1250;
 
-////	  var phases = new Array(backgroundPizzas);
-
-// I think this pretty much streamlines making 
-//  tossing pizzas into the background
+// I think this pretty much streamlines making tossing pizzas into the background
+// still need to implement 'refactoring' 'i % 5' calculation per feedback
 
   for (var i = 0; i < backgroundPizzas; i++) {
       xoff = items[i].basicLeft + 100 * Math.sin((scroll) + (i % 5));
       items[i].style.transform = "translateX(" + xoff + "px)";
   }
-
-////	for this effort all this developmental code could have been git'd
-////	but using git as second nature isn't in my tool kit yet.
-
-////	  for (var i = 0; i < items.length; i++) {
-////	    phases[i] = Math.sin((scroll) + (i % 5));
-////	  }
-
-////	  for (var i = 0, xoff = 0; i < items.length; i++) {
-////	//    items[i].style.left = items[i].basicLeft + 100 * phases[i] + 'px';
-////	      xoff = items[i].basicLeft + 100 * phases[i];
-////	      items[i].style.transform = "translateX(" + xoff + "px)";
-////	  }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -572,9 +528,8 @@ function updatePositions() {
   animating = false;
 }
 
-// I think this is the basic animation fram idea
-// At least it keep rapid fire scroll event throttled
-// so they don't lower the FPS
+// I think this is the basic animation frame idea
+// At least it keep rapid fire scroll event throttled so they don't lower the FPS
 
 function animate() {
 
@@ -585,18 +540,17 @@ function animate() {
 }
 
 // runs updatePositions on scroll
-// window.addEventListener('scroll', updatePositions);
+// original code window.addEventListener('scroll', updatePositions);
 window.addEventListener('scroll', animate);
 
 // Generates the sliding pizzas when the page loads.
 
-// Eight rows should cover most displays
-// down and dirty
+// still need to implement suggestion from feedback to calculate pizza count from page height
+// Eight rows should cover most displays down and dirty
 // FPS still goes down when the screen is full size on 21 inch display
 // but it looks like on average the work per frame is less than 5 milliseconds
 
 // Believe or not these changes were the result of making the the translate call work
-// I'll still think about getting the screen height
 
 // Eight rows of seven pizzas per row
 var backgroundPizzas = 56;
@@ -620,7 +574,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // toss the pizzas onto the screen with the pizzaToss values
     elem.basicLeft = pizzaToss[Math.abs(i % cols)];
     elem.style.top = (Math.floor(i / cols) * s) + "px";
-//  document.querySelector("#movingPizzas1").appendChild(elem);
     appendPizzas.appendChild(elem);
   }
   updatePositions();
